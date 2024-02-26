@@ -17,6 +17,10 @@ class HFParser(sly.Parser):
 	def expr(self, p):
 		return p[0] * p[2]
 	
+	@_('expr SEP expr EXPO')
+	def expr(self, p):
+		return p[0] ** p[2]
+	
 	@_('expr SEP expr DIVIDE')
 	def expr(self, p):
 		val = p[0] / p[2]

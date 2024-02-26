@@ -2,13 +2,14 @@ import sly
 
 
 class HFLexer(sly.Lexer):
-	tokens = {NUMBER, PLUS, MINUS, TIMES, DIVIDE, SEP}
+	tokens = {NUMBER, PLUS, MINUS, TIMES, DIVIDE, EXPO, SEP}
 	ignore = "\t\n"
 	
 	NUMBER = r"\d+"
 	PLUS = r"\+"
 	MINUS = r"-"
 	TIMES = r"\*"
+	EXPO = r"×"
 	DIVIDE = r"/"
 	SEP = r"[ _]"
 	
