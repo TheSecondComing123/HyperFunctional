@@ -19,7 +19,7 @@ class HFLexer(sly.Lexer):
 		token.value = int(token.value)
 		return token
 	
-	@_(r"[\"'][^\"]*[\"']")
+	@_(r"\"[^\"]*\"")
 	def STRING(self, token):
 		token.value = token.value[1:-1]
 		return token
