@@ -2,8 +2,8 @@ import sly
 
 
 class HFLexer(sly.Lexer):
-	tokens = {NUMBER, PLUS, MINUS, TIMES, DIVIDE, EXPO, SEP}
-	ignore = "\t\n"
+	tokens = {NUMBER, PLUS, MINUS, TIMES, DIVIDE, EXPO, STRING, SEP}
+	ignore = "\t"
 	
 	NUMBER = r"\d+"
 	PLUS = r"\+"
@@ -11,11 +11,17 @@ class HFLexer(sly.Lexer):
 	TIMES = r"\*"
 	EXPO = r"×"
 	DIVIDE = r"/"
+	
 	SEP = r"[ _]"
 	
-	@_(r'\d+')
+	@_(r"\d+")
 	def NUMBER(self, token):
 		token.value = int(token.value)
+		return token
+	
+	@_(r"[\"'][^\"]*[\"']")
+	def STRING(self, token):
+		token.value = token.value[1:-1]
 		return token
 
 
