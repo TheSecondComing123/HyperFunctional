@@ -13,7 +13,7 @@ class HFParser(sly.Parser):
 	
 	@_("expr SEP expr MINUS")
 	def expr(self, p):
-		return p[0] - p[2]
+		return minus(p[0], p[2])
 	
 	@_("expr SEP expr TIMES")
 	def expr(self, p):
