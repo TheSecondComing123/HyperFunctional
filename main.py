@@ -1,7 +1,6 @@
 from lexer import *
 from parser import *
 
-
 if __name__ == "__main__":
 	while True:
 		data = input(">>> ")

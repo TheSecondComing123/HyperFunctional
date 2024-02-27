@@ -3,6 +3,8 @@ import sly
 from lexer import HFLexer
 from element_helpers import *
 
+from string import ascii_lowercase
+
 
 class HFParser(sly.Parser):
 	tokens = HFLexer.tokens
@@ -34,6 +36,10 @@ class HFParser(sly.Parser):
 	@_("STRING")
 	def expr(self, p):
 		return p.STRING
+	
+	@_("LOWERCASE_ALPHABET")
+	def expr(self, p):
+		return ascii_lowercase
 
 
 parser = HFParser()
