@@ -6,15 +6,11 @@ def __str_int(a, b):
 	if isinstance(a, str):
 		if b >= 32:
 			return a + chr(b)
-		if b <= len(a) - 1:
-			return a + a[b]
-		return a + str(b)
+		return a + a[b % len(a)]
 	else:
 		if a >= 32:
 			return chr(a) + b
-		if a <= len(b) - 1:
-			return b[a] + b
-		return str(a) + b
+		return b[a % len(b)] + b
 
 
 def plus(a, b):
