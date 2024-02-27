@@ -29,3 +29,14 @@ def minus(a, b):
 				
 			point = b % len(a)
 			return a[:point] + a[point + 1:]
+
+
+def divide(a, b):
+	if __match_types(a, b, int, int):
+		if a / b == (result := int(a / b)):
+			return result
+		return round(a / b, 2)
+	if __match_types(a, b, str, int):
+		if isinstance(b, str):
+			a, b = b, a
+		return [a[i:i + b] for i in range(0, len(a), b)]
