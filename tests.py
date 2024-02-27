@@ -8,9 +8,9 @@ from parser import parse
 # 	return parse(tokenize(test))
 
 
-class MyTestCase(unittest.TestCase):
+class HFTests(unittest.TestCase):
 	def test_integers(self):
-		self.assertEqual(parse(tokenize("0123")), 123)
+		self.assertEqual(parse(tokenize("0123")), 123)  # leading zeros are removed
 		self.assertEqual(parse(tokenize("1 2+")), 3)
 		self.assertEqual(parse(tokenize("2 2*")), 4)
 		self.assertEqual(parse(tokenize("5 6-")), -1)
@@ -22,6 +22,8 @@ class MyTestCase(unittest.TestCase):
 		self.assertEqual(parse(tokenize("\"abc 1\n\"")), "abc 1\n")
 		self.assertEqual(parse(tokenize("\"abc\" \"abc\"+")), "abcabc")
 		self.assertEqual(parse(tokenize("\"abc\" 02*")), "abcabc")
+		self.assertEqual(parse(tokenize("\"abc\" 32+")), "abc ")
+		self.assertEqual(parse(tokenize("02 \"abc\"+")), "cabc")
 
 
 if __name__ == '__main__':
