@@ -3,5 +3,9 @@ from parser import *
 
 
 if __name__ == "__main__":
-	# print(parse(tokenize("\"abc\"_\"abc\"+")))
-	pass
+	while True:
+		data = input(">>> ")
+		if not data or data.isspace():
+			break
+		
+		print(parse(tokenize(data)))
