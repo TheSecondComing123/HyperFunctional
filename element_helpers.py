@@ -40,6 +40,6 @@ def divide(a, b):
 		if isinstance(b, str):
 			a, b = b, a
 		return [a[i:i + b] for i in range(0, len(a), b)]
-	if __match_types(a, b, str, str):  # todo: work on lists too
+	if __match_types(a, b, str, str):  # todo: make this work on lists too
 		return a.split(b)
 	
