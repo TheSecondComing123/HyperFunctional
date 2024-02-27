@@ -27,6 +27,8 @@ class HFTests(unittest.TestCase):
 		self.assertEqual(parse(tokenize("\"abc\" 05+")), "abcc")
 		self.assertEqual(parse(tokenize("\"abc\" \"ab\"-")), "c")
 		self.assertEqual(parse(tokenize("05 \"abc\"-")), "ab")
+		self.assertEqual(parse(tokenize("01 \"abc\"*")), "abc")
+		self.assertEqual(parse(tokenize("2 \"12345\"/")), ["12", "34", "5"])
 
 
 if __name__ == '__main__':
