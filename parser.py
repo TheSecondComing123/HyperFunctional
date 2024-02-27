@@ -25,10 +25,6 @@ class HFParser(sly.Parser):
 	
 	@_("expr SEP expr DIVIDE")
 	def expr(self, p):
-		# val = p[0] / p[2]
-		# if val == int(val):
-		# 	return int(val)
-		# return round(val, 2)
 		return divide(p[0], p[2])
 	
 	@_("NUMBER")
