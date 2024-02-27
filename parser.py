@@ -1,5 +1,7 @@
 import sly
+
 from lexer import HFLexer
+from element_helpers import *
 
 
 class HFParser(sly.Parser):
@@ -7,7 +9,7 @@ class HFParser(sly.Parser):
 	
 	@_("expr SEP expr PLUS")
 	def expr(self, p):
-		return p[0] + p[2]
+		return plus(p[0], p[2])
 	
 	@_("expr SEP expr MINUS")
 	def expr(self, p):
