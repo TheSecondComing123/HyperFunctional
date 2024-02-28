@@ -7,11 +7,11 @@ def plus(a, b):
 		return a + b
 	
 	if __match_types(a, b, str, int):
-		if isinstance(a, str):
+		if isinstance(a, str):  # b is the int
 			if b >= 32:
 				return a + chr(b)
 			return a + a[b % len(a)]
-		else:
+		else:  # a is the int
 			if a >= 32:
 				return chr(a) + b
 			return b[a % len(b)] + b
@@ -24,7 +24,7 @@ def minus(a, b):
 		if __match_types(a, b, str, str):
 			return a.replace(b, "")
 		elif __match_types(a, b, str | list, int):
-			if isinstance(b, str | list):
+			if isinstance(b, str | list):  # make sure a is iterable and b is int
 				a, b = b, a
 				
 			point = b % len(a)
@@ -36,10 +36,9 @@ def divide(a, b):
 		if a / b == (result := int(a / b)):
 			return result
 		return round(a / b, 2)
-	if __match_types(a, b, str, int):
+	elif __match_types(a, b, str, int):
 		if isinstance(b, str):
 			a, b = b, a
 		return [a[i:i + b] for i in range(0, len(a), b)]
-	if __match_types(a, b, str, str):  # todo: make this work on lists too
+	elif __match_types(a, b, str, str):  # todo: make this work on lists too
 		return a.split(b)
-	

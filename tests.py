@@ -32,6 +32,7 @@ class HFTests(unittest.TestCase):
 		self.assertEqual(test("01 \"abc\"*"), "abc")
 		self.assertEqual(test("2 \"12345\"/"), ["12", "34", "5"])
 		self.assertEqual(test("\"123345\" \"33\"/"), ["12", "45"])
+		self.assertEqual(test("[1,\"abc\",a]"), [1, "abc", ascii_lowercase])
 	
 	def test_constants(self):
 		self.assertEqual(test("a"), ascii_lowercase)
