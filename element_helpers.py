@@ -31,7 +31,7 @@ def minus(a, b):
 	elif __match_types(a, b, str, str):
 		return a.replace(b, "")
 	elif __match_types(a, b, list, list):
-		return [a[i] for i in range(len(a)) if a[i:i+len(b)] != b]
+		return [i for i in a if i not in b]
 	elif isinstance(a, str | list) and isinstance(b, int):
 		if isinstance(b, str | list):
 			a, b = b, a
@@ -47,9 +47,24 @@ def divide(a, b):
 		if a / b == (result := int(a / b)):
 			return result
 		return round(a / b, 2)
-	elif __match_types(a, b, str | list, int):
-		if isinstance(b, str):
-			a, b = b, a
-		return [a[i:i + b] for i in range(0, len(a), b)]
-	elif __match_types(a, b, str, str):  # todo: make this work on lists too
-		return a.split(b)
+	elif __match_types(a, b, str | list, int | str):
+		if __match_types(a, b, str, str):
+			return a.split(b)
+		
+		if isinstance(a, str):
+			b = str(b) if isinstance(b, int) else "".join(b)
+		
+		current = []
+		for i in range(len(a)):
+			if a[i] == b:
+				current.append(a[:i])
+				
+				try:
+					end = a.index(b, i + 1)
+				except ValueError:
+					end = len(a)
+				current.append(a[i + 1:end])
+		
+		return current
+	elif __match_types(a, b, list, list):
+		return [a[i] for i in range(len(a)) if a[i:i+len(b)] != b]
