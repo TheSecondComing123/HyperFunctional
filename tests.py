@@ -30,15 +30,16 @@ class HFTests(unittest.TestCase):
 		self.assertEqual(test("\"abc\" \"ab\"-"), "c")
 		self.assertEqual(test("\"abc\" 05-"), "ab")
 		self.assertEqual(test("01 \"abc\"*"), "abc")
-		self.assertEqual(test("2 \"12345\"/"), ["12", "34", "5"])
-		self.assertEqual(test("\"123345\" \"33\"/"), ["12", "45"])
+		self.assertEqual(test("\"12345\" [2]/"), ["1", "345"])
+		self.assertEqual(test("\"123345\" 33/"), ["12", "45"])
 	
 	def test_lists(self):
 		self.assertEqual(test("[01,\"abc\",a]"), [1, "abc", ascii_lowercase])
 		self.assertEqual(test("3 [1,2]+"), [3, 1, 2])
 		self.assertEqual(test("[1,2,2,3] [2]-"), [1, 3])
 		self.assertEqual(test("123 \"2\"-"), 13)
-		self.assertEqual(test("[1,2,3] 2/"), [[1, 2], [3]])
+		self.assertEqual(test("[1,2,3,4] 2/"), [[1], [3, 4]])
+		self.assertEqual(test("[1,2,2,3] [2,2]/"), [[1], [3]])
 	
 	def test_constants(self):
 		self.assertEqual(test("a"), ascii_lowercase)

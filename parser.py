@@ -17,6 +17,8 @@ class HFParser(sly.Parser):
 	def expr(self, p):
 		return minus(p[0], p[2])
 	
+	# todo: implement -int, -str, -list
+	
 	@_("expr SEP expr TIMES")
 	def expr(self, p):
 		return p[0] * p[2]
